@@ -1,22 +1,33 @@
 import React from 'react';
-
+import { Meta, Story } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { TebButton } from '../components';
 
 export default {
-  title: 'TebButton',
+  title: "Components/TebButton",
   component: TebButton,
-  
-  argTypes: {},
+  argTypes: {
+    onClick: { action: 'clicked' },
+    variant: {
+      options: ['contained', 'outlined'],
+      control: { type: 'select' },
+    },
+  }
+} as ComponentMeta<typeof TebButton>;
+
+export const BasicButton: ComponentStory<typeof TebButton> = (args) => <TebButton {...args} />;
+BasicButton.args = {
+  label: "Button",
 };
 
-const Template = (args) => <TebButton {...args} />;
-
-export const Primary = Template.bind({});
-
-Primary.args = {
-  variant: 'contained',
-  label: 'Click Me',
+export const SedaButton: ComponentStory<typeof TebButton> = (args) => <TebButton {...args} />;
+SedaButton.args = {
+  label: "Sedaaaa",
+  variant: "outlined",
+  color:"error",
+  onClick: () => alert("naber")
 };
+
 
 
 
