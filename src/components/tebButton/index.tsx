@@ -1,5 +1,4 @@
 import React from 'react';
-import './tebbutton.scss';
 import Button, { ButtonProps } from '@mui/material/Button';
 
 type Variants = 'contained' | 'outlined'

@@ -3,7 +3,7 @@ const path = require('path'); // node yüklüyse bu vardır
 module.exports = {
 	entry: path.join(__dirname, 'src', 'index.tsx'),
 	output: {
-		path: path.resolve(__dirname, 'build'), // build isminde bir klasör oluşturup bundle alıyor
+		path: path.resolve(__dirname, 'build'), // build klasörü
 		globalObject: 'this',
 		library: {
 			name: 'basic-ui-lib',
