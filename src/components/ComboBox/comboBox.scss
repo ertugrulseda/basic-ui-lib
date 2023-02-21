@@ -1,0 +1,21 @@
+.combo-box {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    width: 300px;
+    height: 300px;
+
+    .header {
+        border-width: 2px;
+        border-style: solid;
+        border-color: yellowgreen;
+        width: 100%;
+    }
+
+    .content {
+        padding:5px;
+        background-color: purple;
+    }
+
+
+}
