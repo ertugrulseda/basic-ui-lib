@@ -13,7 +13,8 @@ module.exports = {
 		'@storybook/preset-scss',
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
-		'@storybook/addon-interactions'
+		'@storybook/addon-interactions',
+		'@storybook/addon-knobs'
 	],
 	framework: '@storybook/react',
 	core: {

@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Meta, Story } from "@storybook/react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { ComboBox } from '../components';
 
@@ -22,7 +21,7 @@ export default {
   component: ComboBox,
 } as ComponentMeta<typeof ComboBox>;
 
-export const BasicComboBox: ComponentStory<typeof ComboBox> = (args) => <ComboBox {...args} />;
+export const BasicComboBox: ComponentStory<typeof ComboBox> = (args:any) => <ComboBox {...args} />;
 BasicComboBox.args = {
   placeHolder:'Ülke Seçin',
   elements: [
