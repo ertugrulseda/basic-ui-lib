@@ -7,8 +7,8 @@ type Variants = 'contained' | 'outlined'
 export interface TebButtonProps extends ButtonProps {
 	variant?: Variants,
 	label: string,
-	onClick: () => void,
-	restProps?: any
+	onClick: () => void
+	//restPropsu buraya yazmaya gerek yok
 }
 
 export const TebButton = ({ variant = "contained", label, onClick, color, ...restProps }: TebButtonProps) => {
