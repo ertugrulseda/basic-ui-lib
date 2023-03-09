@@ -23,7 +23,6 @@ export const SedaButton: ComponentStory<typeof TebButton> = (args:any) => <TebBu
 SedaButton.args = {
   label: "Sedaaaa",
   variant: "outlined",
-  color:"success",
   onClick: () => alert("naber")
 };
 

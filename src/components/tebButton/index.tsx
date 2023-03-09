@@ -11,9 +11,9 @@ export interface TebButtonProps extends ButtonProps {
 	//restPropsu buraya yazmaya gerek yok
 }
 
-export const TebButton = ({ variant = "contained", label, onClick, color, ...restProps }: TebButtonProps) => {
+export const TebButton = ({ variant = "contained", label, onClick, ...restProps }: TebButtonProps) => {
 	return (
-		<Button variant={variant} onClick={onClick} color={color} {...restProps}>{label}</Button>
+		<Button variant={variant} onClick={onClick} {...restProps}>{label}</Button>
 	);
 }
 
