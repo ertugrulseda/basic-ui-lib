@@ -1,18 +1,18 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CustomStepper } from '../components';
+import { TebStepper } from '../components';
 
 export default {
-    title: "Components/CustomStepper",
-    component: CustomStepper,
+    title: "Components/TebStepper",
+    component: TebStepper,
     argTypes: {
 
     }
-} as ComponentMeta<typeof CustomStepper>;
+} as ComponentMeta<typeof TebStepper>;
 
-export const BasicCustomStepper: ComponentStory<typeof CustomStepper> = (args: any) =>
+export const BasicCustomStepper: ComponentStory<typeof TebStepper> = (args: any) =>
     <div >
-        <CustomStepper {...args} />
+        <TebStepper {...args} />
     </div>
 
 BasicCustomStepper.args = {

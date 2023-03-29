@@ -17,7 +17,7 @@ import { ComboBox } from '../components';
 // );
 
 export default {
-  title: "Components/ComboBox",
+  title: "Components/TebComboBox",
   component: ComboBox,
 } as ComponentMeta<typeof ComboBox>;
 

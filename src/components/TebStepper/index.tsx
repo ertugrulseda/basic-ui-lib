@@ -59,7 +59,7 @@ const Connector = styled(StepConnector)(({ theme }) => ({
     },
 }));
 
-export const CustomStepper: FC<CustomStepperProps> = ({steps = [],activeStepNo=0}) => {
+export const TebStepper: FC<CustomStepperProps> = ({steps = [],activeStepNo=0}) => {
     const [activeStep, setActiveStep] = React.useState(activeStepNo);
     const [compIsShown, setCompIsShown] = useState(false);
 
