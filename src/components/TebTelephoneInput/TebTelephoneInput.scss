@@ -1,0 +1,67 @@
+.telephone-wrapper {
+  display: 'flex';
+  align-items: 'center';
+
+  .flag {
+    display: 'flex';
+    align-items: 'center'
+  }
+}
+
+
+/*
+MuiFormControl-root 
+MuiTextField-root 
+css-1u3bzj6-MuiFormControl-root-MuiTextField-root
+
+*/
+
+.css-ittuaa-MuiInputAdornment-root {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.css-15z11om-MuiInputBase-root-MuiOutlinedInput-root {
+  color: rgba(0, 0, 0, 0.54) !important;
+
+}
+
+/*
+MuiInputBase-root 
+MuiOutlinedInput-root 
+MuiInputBase-colorPrimary 
+MuiInputBase-formControl 
+MuiInputBase-adornedStart 
+css-15z11om-MuiInputBase-root-MuiOutlinedInput-root
+*/
+
+.MuiInputBase-root:active {}
+
+.MuiOutlinedInput-root :active {}
+
+.MuiInputBase-colorPrimary:active {
+  /*animation: 1s infinite alternate deneme;*/
+}
+
+.MuiInputBase-formControl {}
+
+.MuiInputBase-adornedStart:active {}
+
+.css-15z11om-MuiInputBase-root-MuiOutlinedInput-root:active {
+  color: rgba(0, 0, 0, 0.54) !important;
+
+}
+
+
+@keyframes deneme {
+  from {
+    border-radius: 4px;
+    background-color: aquamarine;
+    border-style: solid;
+  }
+
+  to {
+    border-radius: 50%;
+    background-color: aqua;
+    border-style: none;
+  }
+}
