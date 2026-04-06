@@ -19,5 +19,12 @@ module.exports = {
 	framework: '@storybook/react',
 	core: {
 		builder: '@storybook/builder-webpack5'
-	}
+	},
+	 webpack: (config, options) => {
+
+    options.cache.set = () => Promise.resolve();
+
+    return config;
+
+  },
 };
