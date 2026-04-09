@@ -1,0 +1,37 @@
+
+
+.MuiFormHelperText-root {
+  position: absolute;
+}
+
+.helperTextContainer {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  max-height: 20px;
+  width: 100%;
+
+  &.disabled {
+    .helperText {
+      color: #C0BFBE;
+    }
+  }
+
+  .error {
+    color: #d52727;
+  }
+
+  .helperText {
+    display: flex;
+    font-family: Rubik;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #000;
+  }
+} 

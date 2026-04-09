@@ -1,4 +1,6 @@
 export * from './tebButton'
+export {default as TebAutoComplete} from './TebAutoComplete'
+export type { TebAutoCompleteProps } from '../utils/props'
 export * from './TebThemeProvider'
 export * from './ComboBox'
 export * from './TebGrid'

@@ -20,11 +20,8 @@ module.exports = {
 	core: {
 		builder: '@storybook/builder-webpack5'
 	},
-	 webpack: (config, options) => {
-
-    options.cache.set = () => Promise.resolve();
-
+	 webpackFinal: async (config) => {
+    config.cache = false;
     return config;
-
   },
 };

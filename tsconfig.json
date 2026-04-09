@@ -2,12 +2,13 @@
   "compilerOptions": {
     "outDir": "build",
     "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6", "dom"],
+    "target": "es2017",
+    "lib": ["es2017", "dom"],
     "sourceMap": true,
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "ignoreDeprecations": "6.0",
     "rootDir": "src",
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -22,7 +23,7 @@
   },
   "include": [
     "./src"
-  ],
+, "declarations.d.ts"  ],
   "exclude": [
     "node_modules",
     "build",
