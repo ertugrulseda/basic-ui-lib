@@ -8,7 +8,10 @@ module.exports = {
 			propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true)
 		}
 	},
-	stories: [ '../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)' ],
+	stories: [
+		'../src/**/*.stories.mdx',
+		'../src/**/!(tebTelephoneInput|TebTelephoneInput).stories.@(js|jsx|ts|tsx)',
+	],
 	addons: [
 		'@storybook/preset-scss',
 		'@storybook/addon-links',
@@ -24,4 +27,7 @@ module.exports = {
     config.cache = false;
     return config;
   },
+  managerHead:(head)=>
+	`${head} <style><`
+
 };

@@ -1,3 +1,13 @@
+import type { CSSProperties } from 'react';
+import type { AgGridReactProps } from 'ag-grid-react';
+
+
+
+export interface TebDataGridEnterpriseProps extends AgGridReactProps {
+  style?: CSSProperties;
+  [key: string]: any;
+}
+
 import {InputSize} from './types'
 import type {
   AutocompleteChangeDetails,

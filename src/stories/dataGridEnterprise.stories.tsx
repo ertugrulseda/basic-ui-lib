@@ -1,14 +1,14 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { TebDataGridXtra2 } from '../components';
+import { TebDataGridEnterprise } from '../components';
 import { useArgs } from '@storybook/client-api';
-import { TebDataGridXtra2Props } from '../components/TebDataGridXtra2';
+import { TebDataGridEnterpriseProps } from '../utils/props';
 
 
 
 export default {
-  title: 'Components/TebDataGridXtra2',
-  component: TebDataGridXtra2,
+  title: 'Components/TebDataGridEnterprise',
+  component: TebDataGridEnterprise,
   argTypes: {
     className: {
       control: 'select',
@@ -79,7 +79,7 @@ export default {
 
   }
 
-} as ComponentMeta<typeof TebDataGridXtra2>;
+} as ComponentMeta<typeof TebDataGridEnterprise>;
 
 
 const trFormatter = new Intl.NumberFormat('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -113,7 +113,7 @@ function getBrowserLang(): 'tr' | 'en' {
   return lang.startsWith('tr') ? 'tr' : 'en';
 }
 
-export const BasicDataGridXtra: ComponentStory<typeof TebDataGridXtra2> = (args: TebDataGridXtra2Props) => {
+export const BasicDataGridXtra: ComponentStory<typeof TebDataGridEnterprise> = (args: TebDataGridEnterpriseProps) => {
   const [{ className }, updateArgs] = useArgs();
   const lang = getBrowserLang();
 
@@ -137,12 +137,12 @@ export const BasicDataGridXtra: ComponentStory<typeof TebDataGridXtra2> = (args:
     },
   ], [lang]);
 
-  return <TebDataGridXtra2 {...args} columnDefs={columnDefs} />;
+  return <TebDataGridEnterprise {...args} columnDefs={columnDefs} />;
 };
 
 
-export const TreeDataGridXtra: ComponentStory<typeof TebDataGridXtra2> = () => (
-  <TebDataGridXtra2
+export const TreeDataGridXtra: ComponentStory<typeof TebDataGridEnterprise> = () => (
+  <TebDataGridEnterprise
     className="ag-theme-quartz"
     treeData
     rowData={[
@@ -179,7 +179,7 @@ type MasterDetailArgs = {
 };
 
 export const MasterDetailDataGrid: ComponentStory<React.ComponentType<MasterDetailArgs>> = (args: MasterDetailArgs) => (
-  <TebDataGridXtra2
+  <TebDataGridEnterprise
     className={args.className}
     masterDetail
     animateRows={args.animateRows}
@@ -355,7 +355,7 @@ const excelColumnDefs = [
   },
 ];
 
-export const ExcelExportDataGrid: ComponentStory<typeof TebDataGridXtra2> = () => {
+export const ExcelExportDataGrid: ComponentStory<typeof TebDataGridEnterprise> = () => {
   const gridApiRef = useRef<{ exportDataAsExcel: (params?: object) => void; exportDataAsCsv: (params?: object) => void } | null>(null);
 
   const onGridReady = useCallback((params: { api: typeof gridApiRef.current }) => {
@@ -407,7 +407,7 @@ export const ExcelExportDataGrid: ComponentStory<typeof TebDataGridXtra2> = () =
           CSV İndir
         </button>
       </div>
-      <TebDataGridXtra2
+      <TebDataGridEnterprise
         className="ag-theme-quartz"
         rowData={excelRowData}
         columnDefs={excelColumnDefs}
@@ -445,7 +445,7 @@ const aiColumnDefs = [
   { field: 'bronze',  headerName: 'Bronz',   flex: 1, filter: 'agNumberColumnFilter' },
 ];
 
-export const AiToolkitDataGrid: ComponentStory<typeof TebDataGridXtra2> = () => {
+export const AiToolkitDataGrid: ComponentStory<typeof TebDataGridEnterprise> = () => {
   const gridApiRef = useRef<{ getStructuredSchema: () => unknown; getState: () => unknown; setState: (state: unknown, ignore: string[]) => void } | null>(null);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
@@ -526,7 +526,7 @@ Yanıt olarak sadece { gridState, propertiesToIgnore, explanation } formatında 
           <pre style={{ background: '#f5f5f5', padding: 8, borderRadius: 4, whiteSpace: 'pre-wrap', marginTop: 4 }}>{lastPrompt}</pre>
         </details>
       )}
-      <TebDataGridXtra2
+      <TebDataGridEnterprise
         className="ag-theme-quartz"
         rowData={aiRowData}
         columnDefs={aiColumnDefs}
