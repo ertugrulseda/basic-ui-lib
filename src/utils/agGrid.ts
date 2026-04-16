@@ -41,3 +41,29 @@ export {
   type MultiFilter,
   type SetFilter,
 } from 'ag-grid-enterprise';
+
+export {
+  // Enums
+  KeyCode,
+  CellRangeType,
+  ServerSideTransactionResultStatus,
+  // Modules
+  AllCommunityModule,
+  // Grid factory
+  createGrid,
+  provideGlobalGridOptions,
+  // Theming
+  createTheme,
+  createPart,
+  themeAlpine,
+  themeBalham,
+  themeQuartz,
+  themeMaterial,
+  colorSchemeLight,
+  colorSchemeDark,
+  colorSchemeDarkBlue,
+  colorSchemeDarkWarm,
+  colorSchemeLightCold,
+  colorSchemeLightWarm,
+  colorSchemeVariable,
+} from 'ag-grid-community';

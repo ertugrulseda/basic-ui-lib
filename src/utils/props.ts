@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { AgGridReactProps } from 'ag-grid-react';
-
+import { ButtonProps } from '@mui/material/Button';
+import { Variants } from './types';
 
 
 export interface TebDataGridEnterpriseProps extends AgGridReactProps {
@@ -46,4 +47,11 @@ export interface TebAutoCompleteProps<T> {
     reason: AutocompleteInputChangeReason,
   ) => void;
 } 
+
+export interface TebButtonProps extends ButtonProps {
+	variant?: Variants,
+	label: string,
+	onClick: () => void
+	//restPropsu buraya yazmaya gerek yok
+}
 

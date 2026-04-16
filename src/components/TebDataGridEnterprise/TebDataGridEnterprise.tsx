@@ -11,7 +11,7 @@ const AG_GRID_LICENSE_KEY = 'YOUR_AG_GRID_ENTERPRISE_LICENSE_KEY_HERE';
 ModuleRegistry.registerModules([AllEnterpriseModule]);
 LicenseManager.setLicenseKey(AG_GRID_LICENSE_KEY);
 
-export const TebDataGridEnterprise = forwardRef<AgGridReact, TebDataGridEnterpriseProps>((props, ref) => {
+const TebDataGridEnterprise = forwardRef<AgGridReact, TebDataGridEnterpriseProps>((props, ref) => {
 
   const { style = { height: 400, width: '100%' }, className,...gridProps } = props;
   const[theme,setTheme] = useState('');

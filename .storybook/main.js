@@ -10,7 +10,7 @@ module.exports = {
 	},
 	stories: [
 		'../src/**/*.stories.mdx',
-		'../src/**/!(tebTelephoneInput|TebTelephoneInput).stories.@(js|jsx|ts|tsx)',
+		'../src/**/*.stories.@(js|jsx|ts|tsx)'
 	],
 	addons: [
 		'@storybook/preset-scss',
@@ -26,8 +26,5 @@ module.exports = {
 	 webpackFinal: async (config) => {
     config.cache = false;
     return config;
-  },
-  managerHead:(head)=>
-	`${head} <style><`
-
+  }
 };
