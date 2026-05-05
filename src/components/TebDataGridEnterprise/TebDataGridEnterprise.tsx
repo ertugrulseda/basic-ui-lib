@@ -1,6 +1,13 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { AllEnterpriseModule, LicenseManager, ModuleRegistry } from 'ag-grid-enterprise';
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-alpine.css';
+import 'ag-grid-community/styles/ag-theme-quartz.css';
+import 'ag-grid-community/styles/ag-theme-material.css';
+import './ag-theme-alpine-compat.css';
+import './ag-theme-quartz-compat.css';
+import './ag-theme-material-compat.css';
 import 'ag-grid-enterprise';
 import type { TebDataGridEnterpriseProps } from '../../utils/props';
 
@@ -13,25 +20,14 @@ LicenseManager.setLicenseKey(AG_GRID_LICENSE_KEY);
 
 const TebDataGridEnterprise = forwardRef<AgGridReact, TebDataGridEnterpriseProps>((props, ref) => {
 
-  const { style = { height: 400, width: '100%' }, className,...gridProps } = props;
-  const[theme,setTheme] = useState('');
-  console.log("TebDataGridEnterprise");
-  console.log(props);
-
-  useEffect(() => {
-    setTheme(className)
-  }, []);
-
-  useEffect(() => {
-    setTheme(className)
-  }, [className]);
-
+  const { style = { height: 400, width: '100%' }, className = 'ag-theme-quartz', gridOptions, ...gridProps } = props;
 
   return (
-    <div style={style} className={theme}>
+    <div style={style} className={className}>
       <AgGridReact
-        className={theme}
+        className={className}
         ref={ref}
+        gridOptions={{ theme: 'legacy', ...gridOptions }}
         {...gridProps}
       />
     </div>

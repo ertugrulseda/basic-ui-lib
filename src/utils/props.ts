@@ -1,7 +1,7 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 import type { AgGridReactProps } from 'ag-grid-react';
 import { ButtonProps } from '@mui/material/Button';
-import { Variants } from './types';
+import { Variants,CheckState } from './types';
 
 
 export interface TebDataGridEnterpriseProps extends AgGridReactProps {
@@ -55,3 +55,56 @@ export interface TebButtonProps extends ButtonProps {
 	//restPropsu buraya yazmaya gerek yok
 }
 
+export interface TreeNode {
+  id: string;
+  name: string | ReactNode;
+  parentId?: string;
+  children?: TreeNode[];
+}
+
+export interface TreeItemClickPayload {
+  id: string;
+  name: string | ReactNode;
+  selected: boolean | null;
+}
+
+export interface TebTreeViewProps {
+  /** Tree data – supports unlimited nesting */
+  data: TreeNode[];
+  /** Tab index forwarded to each focusable row */
+  tabIndex?: number;
+  /** When true, checkboxes (20×20 px) are shown before each label */
+  hasCheckbox?: boolean;
+  /**
+   * When true, clicking a node calls onLoadChildren to fetch its children
+   * and injects them into the tree dynamically. Default: false
+   */
+  loadChildrenDynamically?: boolean;
+  /** Called when loadChildrenDynamically is true and a node is clicked; must return the children to inject */
+  onLoadChildren?: (node: TreeNode) => TreeNode[];
+  /** Fired whenever any row is clicked; returns id, name and selected state */
+  onTreeItemClicked?: (payload: TreeItemClickPayload) => void;
+  /** Fired ONLY when a checkbox is toggled; receives all currently-selected nodes */
+  onTreeItemSelected?: (selectedItems: TreeNode[]) => void;
+  /** When true, shows box shadow and rounded border around the tree. Default: true */
+  hasBorder?: boolean;
+}
+
+
+export interface TreeNodeRowProps {
+  node: TreeNode;
+  depth: number;
+  tabIndex: number;
+  hasCheckbox: boolean;
+  checked: Set<string>;
+  expanded: Set<string>;
+  onToggleExpand: (id: string) => void;
+  onToggleCheck: (node: TreeNode) => void;
+  onRowClick: (node: TreeNode, payload: TreeItemClickPayload) => void;
+}
+
+
+export interface CheckboxProps {
+  state: CheckState;
+  onClick: (e: React.MouseEvent) => void;
+}

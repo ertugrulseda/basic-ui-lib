@@ -65,6 +65,44 @@ export enum InputSize {
   } 
   export const TebAutoComplete: React.FC<TebAutoCompleteProps<any>>; // Placeholder for actual props
 
+
+
+export interface TreeNode {
+  id: string;
+  name: string;
+  parentId?: string;
+  children?: TreeNode[];
+}
+
+export interface TreeItemClickPayload {
+  id: string;
+  name: string;
+  selected: boolean | null;
+}
+
+export interface TebTreeViewProps {
+  /** Tree data – supports unlimited nesting */
+  data: TreeNode[];
+  /** Tab index forwarded to each focusable row */
+  tabIndex?: number;
+  /** When true, checkboxes (20×20 px) are shown before each label */
+  hasCheckbox?: boolean;
+  /**
+   * When true, clicking a node calls onLoadChildren to fetch its children
+   * and injects them into the tree dynamically. Default: false
+   */
+  loadChildrenDynamically?: boolean;
+  /** Called when loadChildrenDynamically is true and a node is clicked; must return the children to inject */
+  onLoadChildren?: (node: TreeNode) => TreeNode[];
+  /** Fired whenever any row is clicked; returns id, name and selected state */
+  onTreeItemClicked?: (payload: TreeItemClickPayload) => void;
+  /** Fired ONLY when a checkbox is toggled; receives all currently-selected nodes */
+  onTreeItemSelected?: (selectedItems: TreeNode[]) => void;
+  /** When true, shows box shadow and rounded border around the tree. Default: true */
+  hasBorder?: boolean;
+}
+ export const TebTreeView: React.FC<TebTreeViewProps>;
+
 }
 
 declare module '*.scss' {

@@ -1,0 +1,19 @@
+/* stylelint-disable */
+/*
+ * Chrome 100 fallback for color-mix() (requires Chrome 111+).
+ * Precomputed from default material theme colors:
+ *   --ag-material-accent-color: #ff4081  rgb(255,64,129)
+ *   --ag-background-color:      #fff     rgb(255,255,255)
+ *   --ag-invalid-color:         #e02525  rgb(224,37,37)
+ *
+ * Line 26: color-mix(in srgb, transparent, #ff4081 50%) = rgba(255,64,129,0.5)
+ * Line 75: color-mix(in srgb, #fff, #e02525 0.5%)       ≈ #fff (0.5% is imperceptible)
+ */
+@supports not (color: color-mix(in srgb, red, blue)) {
+  .ag-theme-material,
+  .ag-theme-material-dark,
+  .ag-theme-material-auto-dark {
+    --ag-row-numbers-selected-color:   rgba(255, 64, 129, 0.5);
+    --ag-input-error-focus-box-shadow: 0 0 0 5px #fff;
+  }
+}

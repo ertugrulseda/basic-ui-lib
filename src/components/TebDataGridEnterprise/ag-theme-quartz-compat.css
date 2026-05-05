@@ -1,0 +1,123 @@
+/* stylelint-disable */
+/*
+ * Chrome 100 fallback for color-mix() (requires Chrome 111+).
+ * Precomputed from default quartz theme colors:
+ *   --ag-foreground-color: #181d1f  rgb(24,29,31)
+ *   --ag-background-color: #fff     rgb(255,255,255)
+ *   --ag-active-color:     #2196f3  rgb(33,150,243)
+ *   --ag-invalid-color:    #e02525  rgb(224,37,37)
+ *
+ * Dark theme:
+ *   --ag-foreground-color: #fff     rgb(255,255,255)
+ *   --ag-background-color: #1f2936  rgb(31,41,54)
+ */
+@supports not (color: color-mix(in srgb, red, blue)) {
+
+  /* ── Light theme ─────────────────────────────────────────────── */
+  .ag-theme-quartz {
+    --ag-border-color:                      rgba(24, 29, 31, 0.15);
+    --ag-header-background-color:           #fafafb;
+    --ag-tooltip-background-color:          #fafafb;
+    --ag-control-panel-background-color:    #fafafb;
+    --ag-checkbox-unchecked-color:          #babbbc;
+    --ag-icon-font-color:                   rgba(24, 29, 31, 0.9);
+    --ag-panel-background-color:            #f8f8f8;
+    --ag-panel-border-color:                rgba(24, 29, 31, 0.2);
+    --ag-menu-background-color:             #f8f8f8;
+    --ag-menu-border-color:                 rgba(24, 29, 31, 0.2);
+    --ag-selected-row-background-color:     rgba(33, 150, 243, 0.08);
+    --ag-row-hover-color:                   rgba(33, 150, 243, 0.12);
+    --ag-column-hover-color:                rgba(24, 29, 31, 0.05);
+    --ag-range-selection-background-color:  rgba(33, 150, 243, 0.2);
+    --ag-range-selection-background-color-2: rgba(33, 150, 243, 0.36);
+    --ag-range-selection-background-color-3: rgba(33, 150, 243, 0.49);
+    --ag-range-selection-background-color-4: rgba(33, 150, 243, 0.59);
+    --ag-row-numbers-selected-color:        rgba(33, 150, 243, 0.5);
+    --ag-input-focus-box-shadow:            0 0 0 3px rgba(33, 150, 243, 0.47);
+    --ag-input-error-focus-box-shadow:      0 0 0 3px rgb(240, 146, 146);
+    --ag-disabled-foreground-color:         rgba(24, 29, 31, 0.5);
+    --ag-chip-background-color:             rgba(24, 29, 31, 0.07);
+    --ag-chip-border-color:                 #ddddde;
+    --ag-input-disabled-background-color:   #f1f1f2;
+    --ag-modal-overlay-background-color:    rgba(255, 255, 255, 0.66);
+    --ag-chart-menu-label-color:            rgba(24, 29, 31, 0.8);
+    --ag-chart-menu-pill-select-button-color: rgba(24, 29, 31, 0.7);
+    --ag-filter-panel-card-subtle-color:    rgba(24, 29, 31, 0.7);
+    --ag-quartz-icon-hover-color:           rgba(24, 29, 31, 0.1);
+    --ag-quartz-icon-active-color:          rgba(33, 150, 243, 0.14);
+  }
+
+  .ag-theme-quartz .ag-menu,
+  .ag-theme-quartz .ag-panel-content-wrapper .ag-column-select {
+    color: rgba(24, 29, 31, 0.95);
+  }
+
+  .ag-theme-quartz .ag-tabs-header {
+    background-color: rgba(24, 29, 31, 0.05);
+  }
+
+  .ag-theme-quartz .ag-chart-menu {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* ── Dark theme ──────────────────────────────────────────────── */
+  .ag-theme-quartz-dark {
+    --ag-background-color:                  #1f2936;
+    --ag-secondary-border-color:            rgba(255, 255, 255, 0.1);
+    --ag-header-background-color:           #28313e;
+    --ag-tooltip-background-color:          #212b38;
+    --ag-control-panel-background-color:    #28313e;
+    --ag-checkbox-unchecked-color:          #797f86;
+    --ag-row-hover-color:                   rgba(33, 150, 243, 0.2);
+    --ag-selected-row-background-color:     rgba(33, 150, 243, 0.2);
+    --ag-panel-background-color:            #353e4a;
+    --ag-panel-border-color:                rgba(255, 255, 255, 0.1);
+    --ag-menu-background-color:             #353e4a;
+    --ag-menu-border-color:                 rgba(255, 255, 255, 0.1);
+  }
+
+  .ag-theme-quartz-dark .ag-menu,
+  .ag-theme-quartz-dark .ag-panel-content-wrapper .ag-column-select {
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .ag-theme-quartz-dark .ag-tabs-header {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .ag-theme-quartz-dark .ag-chart-menu {
+    background-color: rgba(31, 41, 54, 0.6);
+  }
+
+  /* ── Auto-dark theme (prefers-color-scheme: dark) ────────────── */
+  @media (prefers-color-scheme: dark) {
+    .ag-theme-quartz-auto-dark {
+      --ag-background-color:                #1f2936;
+      --ag-secondary-border-color:          rgba(255, 255, 255, 0.1);
+      --ag-header-background-color:         #28313e;
+      --ag-tooltip-background-color:        #212b38;
+      --ag-control-panel-background-color:  #28313e;
+      --ag-checkbox-unchecked-color:        #797f86;
+      --ag-row-hover-color:                 rgba(33, 150, 243, 0.2);
+      --ag-selected-row-background-color:   rgba(33, 150, 243, 0.2);
+      --ag-panel-background-color:          #353e4a;
+      --ag-panel-border-color:              rgba(255, 255, 255, 0.1);
+      --ag-menu-background-color:           #353e4a;
+      --ag-menu-border-color:               rgba(255, 255, 255, 0.1);
+      --ag-quartz-icon-hover-color:         rgba(255, 255, 255, 0.1);
+    }
+
+    .ag-theme-quartz-auto-dark .ag-menu,
+    .ag-theme-quartz-auto-dark .ag-panel-content-wrapper .ag-column-select {
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .ag-theme-quartz-auto-dark .ag-tabs-header {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .ag-theme-quartz-auto-dark .ag-chart-menu {
+      background-color: rgba(31, 41, 54, 0.6);
+    }
+  }
+}

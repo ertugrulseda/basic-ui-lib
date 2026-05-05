@@ -89,3 +89,4 @@ export type {
 } from 'ag-grid-community';
 
 export type Variants = 'contained' | 'outlined'
+export type CheckState = "checked" | "indeterminate" | "unchecked";

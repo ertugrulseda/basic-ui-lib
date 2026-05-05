@@ -1,7 +1,7 @@
 node_modules
-
 src/stories
-
 docs
-
 storybook
+src
+.vscode
+.gitignore

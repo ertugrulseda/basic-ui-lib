@@ -124,11 +124,12 @@ export const BasicDataGridXtra: ComponentStory<typeof TebDataGridEnterprise> = (
   }, []);
 
   const columnDefs = React.useMemo(() => [
-    { field: 'make',  headerName: basicColumnLabels.make[lang]  },
-    { field: 'model', headerName: basicColumnLabels.model[lang] },
+    { field: 'make',  headerName: basicColumnLabels.make[lang],  flex: 3 },
+    { field: 'model', headerName: basicColumnLabels.model[lang], flex: 3 },
     {
       field: 'price',
       headerName: basicColumnLabels.price[lang],
+      flex: 4,
       editable: true,
       cellEditor: 'agTextCellEditor',
       useValueFormatterInEditor: true,
@@ -137,7 +138,11 @@ export const BasicDataGridXtra: ComponentStory<typeof TebDataGridEnterprise> = (
     },
   ], [lang]);
 
-  return <TebDataGridEnterprise {...args} columnDefs={columnDefs} />;
+  const onFirstDataRendered = React.useCallback((params: any) => {
+    params.api.sizeColumnsToFit();
+  }, []);
+
+  return <TebDataGridEnterprise {...args} columnDefs={columnDefs} onFirstDataRendered={onFirstDataRendered} />;
 };
 
 
@@ -314,7 +319,7 @@ BasicDataGridXtra.args = {
   domLayout: 'normal',
   rowHeight: 42,
   headerHeight: 48,
-  defaultColDef: { sortable: true, resizable: true, flex: 1 },
+  defaultColDef: { sortable: true, resizable: true },
   style: { height: 400, width: '100%' }
 };
 
