@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect, KeyboardEvent } from "react";
+import React, { useState, useCallback, useMemo, useEffect, useRef, KeyboardEvent } from "react";
 import { TebTreeViewProps, TreeNode, TreeNodeRowProps, CheckboxProps, TreeItemClickPayload } from '../../utils/props';
 import { CheckState } from "../../utils/types";
 
@@ -24,6 +24,30 @@ function injectChildrenById(nodes: TreeNode[], targetId: string, children: TreeN
 function getLeafIds(node: TreeNode): string[] {
   if (!node.children || node.children.length === 0) return [node.id];
   return node.children.flatMap(getLeafIds);
+}
+
+/** Finds a node by id anywhere in the tree. */
+function findNodeById(nodes: TreeNode[], id: string): TreeNode | null {
+  for (const node of nodes) {
+    if (node.id === id) return node;
+    if (node.children?.length) {
+      const found = findNodeById(node.children, id);
+      if (found) return found;
+    }
+  }
+  return null;
+}
+
+/** Returns the ids of all ancestor nodes of the target node, or null if not found. */
+function getAncestorIds(nodes: TreeNode[], targetId: string, ancestors: string[] = []): string[] | null {
+  for (const node of nodes) {
+    if (node.id === targetId) return ancestors;
+    if (node.children?.length) {
+      const found = getAncestorIds(node.children, targetId, [...ancestors, node.id]);
+      if (found) return found;
+    }
+  }
+  return null;
 }
 
 /** Collects all nodes (parents + leaves) that are fully checked. */
@@ -96,12 +120,14 @@ const TreeNodeRow: React.FC<TreeNodeRowProps> = ({
   hasCheckbox,
   checked,
   expanded,
+  activeItemId,
   onToggleExpand,
   onToggleCheck,
   onRowClick,
 }) => {
   const hasChildren = !!node.children && node.children.length > 0;
   const isExpanded = expanded.has(node.id);
+  const isSelected = node.id === activeItemId;
   const checkState = hasCheckbox ? resolveCheckState(node, checked) : "unchecked";
 
   const handleRowClick = () => {
@@ -139,12 +165,14 @@ const TreeNodeRow: React.FC<TreeNodeRowProps> = ({
           cursor: "pointer",
           transition: "background 0.15s",
           outline: "none",
+          background: isSelected ? "#dbeafe" : "transparent",
+          fontWeight: isSelected ? 600 : undefined,
         }}
         onMouseEnter={(e) =>
           ((e.currentTarget as HTMLDivElement).style.background = "#f0f7ff")
         }
         onMouseLeave={(e) =>
-          ((e.currentTarget as HTMLDivElement).style.background = "transparent")
+          ((e.currentTarget as HTMLDivElement).style.background = isSelected ? "#dbeafe" : "transparent")
         }
         onFocus={(e) =>
           ((e.currentTarget as HTMLDivElement).style.outline = "2px solid #3b82f6")
@@ -216,6 +244,7 @@ const TreeNodeRow: React.FC<TreeNodeRowProps> = ({
               hasCheckbox={hasCheckbox}
               checked={checked}
               expanded={expanded}
+              activeItemId={activeItemId}
               onToggleExpand={onToggleExpand}
               onToggleCheck={onToggleCheck}
               onRowClick={onRowClick}
@@ -235,17 +264,47 @@ const TebTreeView: React.FC<TebTreeViewProps> = ({
   hasCheckbox = false,
   hasBorder = true,
   loadChildrenDynamically = false,
+  activeItemId,
   onLoadChildren,
   onTreeItemClicked,
   onTreeItemSelected,
 }) => {
   const [dynamicData, setDynamicData] = useState<TreeNode[]>(data);
   const [checked, setChecked] = useState<Set<string>>(new Set());
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+  const [activeId, setActiveId] = useState<string | undefined>(activeItemId);
+  const isMounted = useRef(false);
+  const [expanded, setExpanded] = useState<Set<string>>(() => {
+    if (!activeItemId) return new Set();
+    const ancestors = getAncestorIds(enrichWithParentIds(data), activeItemId) ?? [];
+    const next = new Set(ancestors);
+    next.delete(activeItemId);
+    return next;
+  });
 
   useEffect(() => {
     setDynamicData(data);
   }, [data]);
+
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
+    setActiveId(activeItemId);
+    if (!activeItemId) return;
+    const enriched = enrichWithParentIds(dynamicData);
+    const ancestors = getAncestorIds(enriched, activeItemId) ?? [];
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      ancestors.forEach((id) => next.add(id));
+      next.delete(activeItemId);
+      return next;
+    });
+    const node = findNodeById(enriched, activeItemId);
+    if (node) {
+      onTreeItemClicked?.({ id: node.id, name: node.name, selected: null });
+    }
+  }, [activeItemId]);
 
   const enrichedData = useMemo(() => enrichWithParentIds(dynamicData), [dynamicData]);
 
@@ -293,6 +352,8 @@ const TebTreeView: React.FC<TebTreeViewProps> = ({
           next.add(node.id);
           return next;
         });
+      } else {
+        setActiveId(node.id);
       }
       onTreeItemClicked?.(payload);
     },
@@ -322,6 +383,7 @@ const TebTreeView: React.FC<TebTreeViewProps> = ({
           hasCheckbox={hasCheckbox}
           checked={checked}
           expanded={expanded}
+          activeItemId={activeId}
           onToggleExpand={handleToggleExpand}
           onToggleCheck={handleToggleCheck}
           onRowClick={handleRowClick}

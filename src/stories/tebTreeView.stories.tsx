@@ -11,7 +11,8 @@ export default {
     onTreeItemSelected: { action: 'itemSelected' },
     hasCheckbox: { control: 'boolean', type: { name: 'boolean' } },
     hasBorder: { control: 'boolean', type: { name: 'boolean' } },
-    loadChildrenDynamically: { control: 'boolean', type: { name: 'boolean' } },
+    loadChildrenDynamically: { table: { disable: true } },
+    activeItemId: { control: 'text', type: { name: 'string' } },
   },
 } as ComponentMeta<typeof TebTreeView>;
 
@@ -25,6 +26,7 @@ export const BasitListe = Template.bind({});
 BasitListe.args = {
   hasCheckbox: false,
   hasBorder: true,
+  activeItemId: '2',
   data: [
     { id: '1', name: 'Türkiye', parentId: '0', children: [] },
     { id: '2', name: 'Almanya', parentId: '0', children: [] },
@@ -38,6 +40,7 @@ export const IcIceYapi = Template.bind({});
 IcIceYapi.args = {
   hasCheckbox: false,
   hasBorder: true,
+  activeItemId: 'kadikoy',
   data: [
     {
       id: 'turkiye',
@@ -84,6 +87,7 @@ export const CheckboxIleSecim = Template.bind({});
 CheckboxIleSecim.args = {
   hasCheckbox: true,
   hasBorder: true,
+  activeItemId: 'nodejs',
   data: [
     {
       id: 'frontend',
@@ -123,6 +127,7 @@ export const BordersuzListe = Template.bind({});
 BordersuzListe.args = {
   hasCheckbox: false,
   hasBorder: false,
+  activeItemId: 'vue',
   data: [
     {
       id: 'frontend',
@@ -151,6 +156,7 @@ export const DerinIcIce = Template.bind({});
 DerinIcIce.args = {
   hasCheckbox: true,
   hasBorder: true,
+  activeItemId: 'backend-takim',
   data: [
     {
       id: 'sirket',
@@ -230,6 +236,10 @@ DinamikChildrenYukleme.args = {
     { id: 'almanya', name: 'Almanya', parentId: '0', children: [] },
     { id: 'fransa',  name: 'Fransa',  parentId: '0', children: [] },
   ],
+};
+DinamikChildrenYukleme.argTypes = {
+  activeItemId: { table: { disable: true } },
+  loadChildrenDynamically: { table: { disable: false }, control: 'boolean', type: { name: 'boolean' } },
 };
 DinamikChildrenYukleme.parameters = {
   docs: {
@@ -316,6 +326,7 @@ ReactNodeName.storyName = 'ReactNode Name (span / div)';
 ReactNodeName.args = {
   hasCheckbox: true,
   hasBorder: true,
+  activeItemId: 'nodejs',
   data: [
     {
       id: 'frontend',
